@@ -130,6 +130,22 @@
             transform: translateX(-50%);
         }
 
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            z-index: 1001;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
         /* Navigation */
         header {
             position: fixed;
@@ -214,8 +230,13 @@
             transition: var(--transition);
         }
 
-        .nav-links a:hover::after {
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
             width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--secondary);
         }
 
         .menu-toggle {
@@ -223,6 +244,8 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--primary);
+            background: none;
+            border: none;
         }
 
         /* Hero Section */
@@ -329,6 +352,88 @@
             font-size: 4rem;
             border-radius: 10px;
             margin-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .video-placeholder:hover, .podcast-placeholder:hover {
+            background: #e6f0ff;
+        }
+
+        /* Podcast Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-header h3 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .modal-header p {
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        .podcast-player {
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .podcast-player audio {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .podcast-info {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: var(--light);
+            border-radius: 10px;
+        }
+
+        .podcast-info h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
         }
 
         /* Resources Section */
@@ -516,6 +621,22 @@
             font-size: 0.9rem;
         }
 
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .about-content {
@@ -594,10 +715,17 @@
             .btn {
                 padding: 10px 20px;
             }
+            
+            .modal-content {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Header & Navigation -->
     <header>
         <div class="container">
@@ -608,13 +736,13 @@
                     </div>
                     ABCs of Healthcare QI
                 </a>
-                <div class="menu-toggle" id="menuToggle">
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
                     <i class="fas fa-bars"></i>
-                </div>
+                </button>
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#resources">Resources</a></li>
-                    <li><a href="#newsletter">Subscribe</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#resources" class="nav-link">Resources</a></li>
+                    <li><a href="#newsletter" class="nav-link">Subscribe</a></li>
                     <li><a href="#" class="btn btn-outline">Access Portal</a></li>
                 </ul>
             </nav>
@@ -622,7 +750,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="main-content">
         <div class="container">
             <div class="hero-content">
                 <h1>Advancing Healthcare Through Quality Improvement</h1>
@@ -658,7 +786,7 @@
                             <div class="podcast-placeholder">
                                 <i class="fas fa-headphones"></i>
                             </div>
-                            <a href="#" class="btn btn-outline">Listen Now</a>
+                            <button class="btn btn-outline" id="listenPodcastBtn">Listen Now</button>
                         </div>
                     </div>
                     <div class="media-card">
@@ -678,6 +806,28 @@
             </div>
         </div>
     </section>
+
+    <!-- Podcast Modal -->
+    <div class="modal" id="podcastModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="modal-header">
+                <h3>QI in Healthcare Podcast</h3>
+                <p>Episode 1: Introduction to Quality Improvement in Healthcare</p>
+            </div>
+            <div class="podcast-player">
+                <audio id="podcastAudio" controls>
+                    <source src="https://github.com/Ludovick-Lopa/ABCs_healthcare_QI/blob/main/podcast_safecare.mp4?raw=true" type="audio/mp4">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+            <div class="podcast-info">
+                <h4>About this episode</h4>
+                <p>In this episode, we explore the fundamentals of Quality Improvement in healthcare settings, discussing key concepts, methodologies, and practical applications for healthcare professionals.</p>
+                <p><strong>Duration:</strong> 15 minutes</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Resources Section -->
     <section id="resources" class="resources">
@@ -731,7 +881,9 @@
                 <p>Subscribe to receive weekly QI updates, resources, and thought-provoking questions to enhance your practice.</p>
                 <form class="newsletter-form" id="newsletterForm">
                     <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
-                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                    <button type="submit" class="newsletter-btn" id="subscribeBtn">
+                        <span id="btnText">Subscribe</span>
+                    </button>
                 </form>
                 <p id="subscriptionMessage" style="margin-top: 15px; display: none;"></p>
             </div>
@@ -746,9 +898,9 @@
                     <h3>ABCs of Healthcare QI</h3>
                     <p>Advancing healthcare quality through education, resources, and collaborative improvement initiatives.</p>
                     <div style="margin-top: 20px;">
-                        <a href="#" style="color: #ddd; margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
-                        <a href="#" style="color: #ddd; margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" style="color: #ddd; margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Twitter" style="color: #ddd; margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn" style="color: #ddd; margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="YouTube" style="color: #ddd; margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
@@ -804,29 +956,100 @@
                 header.style.background = 'rgba(255, 255, 255, 0.98)';
                 header.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
             }
+            
+            // Update active nav link based on scroll position
+            updateActiveNavLink();
+        });
+
+        // Update active navigation link based on scroll position
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Podcast modal functionality
+        const podcastModal = document.getElementById('podcastModal');
+        const listenPodcastBtn = document.getElementById('listenPodcastBtn');
+        const closeModal = document.getElementById('closeModal');
+        const podcastAudio = document.getElementById('podcastAudio');
+        
+        listenPodcastBtn.addEventListener('click', () => {
+            podcastModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });
+        
+        closeModal.addEventListener('click', () => {
+            podcastModal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+            podcastAudio.pause(); // Pause audio when modal is closed
+        });
+        
+        // Close modal when clicking outside the content
+        window.addEventListener('click', (e) => {
+            if (e.target === podcastModal) {
+                podcastModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                podcastAudio.pause();
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && podcastModal.style.display === 'flex') {
+                podcastModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                podcastAudio.pause();
+            }
         });
 
         // Newsletter subscription
         const newsletterForm = document.getElementById('newsletterForm');
         const subscriptionMessage = document.getElementById('subscriptionMessage');
+        const subscribeBtn = document.getElementById('subscribeBtn');
+        const btnText = document.getElementById('btnText');
         
         newsletterForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const email = this.querySelector('.newsletter-input').value;
             
+            // Show loading state
+            subscribeBtn.disabled = true;
+            btnText.innerHTML = '<span class="loading"></span> Subscribing...';
+            
             // In a real implementation, you would send this to your server
-            // For demonstration, we'll just show a success message
-            subscriptionMessage.textContent = `Thank you! You've been subscribed with ${email}. You'll receive weekly QI updates.`;
-            subscriptionMessage.style.display = 'block';
-            subscriptionMessage.style.color = 'white';
-            
-            // Reset form
-            this.reset();
-            
-            // Hide message after 5 seconds
+            // For demonstration, we'll simulate a network request
             setTimeout(() => {
-                subscriptionMessage.style.display = 'none';
-            }, 5000);
+                subscriptionMessage.textContent = `Thank you! You've been subscribed with ${email}. You'll receive weekly QI updates.`;
+                subscriptionMessage.style.display = 'block';
+                subscriptionMessage.style.color = 'white';
+                
+                // Reset form and button
+                this.reset();
+                subscribeBtn.disabled = false;
+                btnText.textContent = 'Subscribe';
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    subscriptionMessage.style.display = 'none';
+                }, 5000);
+            }, 1500);
         });
     </script>
 </body>
