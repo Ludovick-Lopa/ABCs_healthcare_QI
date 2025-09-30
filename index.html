@@ -782,11 +782,14 @@
                             <h3>QI in Healthcare Podcast</h3>
                         </div>
                         <div class="media-body">
-                            <p>Listen to our latest episode exploring the fundamentals of Quality Improvement in healthcare settings.</p>
+                            <p>Listen to our latest episodes exploring Quality Improvement in healthcare settings.</p>
                             <div class="podcast-placeholder">
                                 <i class="fas fa-headphones"></i>
                             </div>
-                            <button class="btn btn-outline" id="listenPodcastBtn">Listen Now</button>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn btn-outline" id="listenPodcastBtn">Episode 1</button>
+                                <button class="btn btn-outline" id="listenPodcastBtn2">Episode 2</button>
+                            </div>
                         </div>
                     </div>
                     <div class="media-card">
@@ -807,13 +810,13 @@
         </div>
     </section>
 
-    <!-- Podcast Modal -->
+    <!-- Podcast Modal for Episode 1 -->
     <div class="modal" id="podcastModal">
         <div class="modal-content">
             <span class="close-modal" id="closeModal">&times;</span>
             <div class="modal-header">
                 <h3>QI in Healthcare Podcast</h3>
-                <p>Episode 1: Introduction to Quality Improvement in Healthcare</p>
+                <p>Episode 1: Introduction to SafeCare Quality Improvement Approaches in Tanzania's settings</p>
             </div>
             <div class="podcast-player">
                 <audio id="podcastAudio" controls>
@@ -823,8 +826,30 @@
             </div>
             <div class="podcast-info">
                 <h4>About this episode</h4>
-                <p>In this episode, we explore the fundamentals of Quality Improvement in healthcare settings, discussing key concepts, methodologies, and practical applications for healthcare professionals.</p>
+                <p>In this episode, we explore the updated fundamentals of SafeCare Quality Improvement in healthcare settings, discussing key concepts, methodologies, and practical applications for healthcare professionals in Tanzania.</p>
                 <p><strong>Duration:</strong> 15 minutes</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Podcast Modal for Episode 2 -->
+    <div class="modal" id="podcastModal2">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal2">&times;</span>
+            <div class="modal-header">
+                <h3>QI in Healthcare Podcast</h3>
+                <p>Episode 2: Understanding the Tanzania Quality Improvement Framework</p>
+            </div>
+            <div class="podcast-player">
+                <audio id="podcastAudio2" controls>
+                    <source src="#" type="audio/mp4">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+            <div class="podcast-info">
+                <h4>About this episode</h4>
+                <p>In this episode, we dive deep into the Tanzania Quality Improvement Framework (2011-2016), exploring its structure, implementation strategies, and how it aligns with current healthcare quality standards and practices.</p>
+                <p><strong>Duration:</strong> 18 minutes</p>
             </div>
         </div>
     </div>
@@ -984,7 +1009,7 @@
             });
         }
 
-        // Podcast modal functionality
+        // Podcast modal functionality for Episode 1
         const podcastModal = document.getElementById('podcastModal');
         const listenPodcastBtn = document.getElementById('listenPodcastBtn');
         const closeModal = document.getElementById('closeModal');
@@ -1000,22 +1025,49 @@
             document.body.style.overflow = 'auto'; // Restore scrolling
             podcastAudio.pause(); // Pause audio when modal is closed
         });
+
+        // Podcast modal functionality for Episode 2
+        const podcastModal2 = document.getElementById('podcastModal2');
+        const listenPodcastBtn2 = document.getElementById('listenPodcastBtn2');
+        const closeModal2 = document.getElementById('closeModal2');
+        const podcastAudio2 = document.getElementById('podcastAudio2');
         
-        // Close modal when clicking outside the content
+        listenPodcastBtn2.addEventListener('click', () => {
+            podcastModal2.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });
+        
+        closeModal2.addEventListener('click', () => {
+            podcastModal2.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+            podcastAudio2.pause(); // Pause audio when modal is closed
+        });
+        
+        // Close modals when clicking outside the content
         window.addEventListener('click', (e) => {
             if (e.target === podcastModal) {
                 podcastModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
                 podcastAudio.pause();
             }
+            if (e.target === podcastModal2) {
+                podcastModal2.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                podcastAudio2.pause();
+            }
         });
         
-        // Close modal with Escape key
+        // Close modals with Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && podcastModal.style.display === 'flex') {
                 podcastModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
                 podcastAudio.pause();
+            }
+            if (e.key === 'Escape' && podcastModal2.style.display === 'flex') {
+                podcastModal2.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                podcastAudio2.pause();
             }
         });
 
