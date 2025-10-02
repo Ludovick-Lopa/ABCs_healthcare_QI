@@ -353,10 +353,40 @@
             border-radius: 10px;
             margin-bottom: 15px;
             transition: var(--transition);
+            cursor: pointer;
         }
 
         .video-placeholder:hover, .podcast-placeholder:hover {
             background: #e6f0ff;
+            transform: scale(1.02);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-button {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .video-placeholder:hover .play-button {
+            background: white;
+            transform: scale(1.1);
         }
 
         /* Video Modal */
@@ -367,7 +397,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.9);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -377,28 +407,37 @@
             background-color: white;
             border-radius: 15px;
             width: 90%;
-            max-width: 1000px;
-            padding: 30px;
+            max-width: 900px;
+            padding: 20px;
             position: relative;
             box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
         }
 
         .close-video-modal {
             position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 1.8rem;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
             cursor: pointer;
             color: var(--dark);
             transition: var(--transition);
+            z-index: 2001;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .close-video-modal:hover {
             color: var(--primary);
+            background: white;
         }
 
         .video-modal-header {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             padding-bottom: 15px;
             border-bottom: 1px solid #eee;
         }
@@ -415,17 +454,20 @@
 
         .video-player {
             width: 100%;
-            margin: 20px 0;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         .video-player video {
             width: 100%;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
+            height: auto;
+            display: block;
         }
 
         .video-info {
-            margin-top: 20px;
+            margin-top: 15px;
             padding: 15px;
             background-color: var(--light);
             border-radius: 10px;
@@ -794,7 +836,11 @@
             }
             
             .modal-content, .video-modal-content {
-                padding: 20px;
+                padding: 15px;
+            }
+            
+            .video-modal-content {
+                width: 95%;
             }
         }
     </style>
@@ -876,15 +922,26 @@
                         </div>
                         <div class="media-body">
                             <p>Watch our educational videos that explain QI visualization tools and models used in QI activities.</p>
+                            
                             <div class="video-placeholder" id="watchDataVizVideo">
-                                <i class="fas fa-play-circle"></i>
+                                <div class="video-thumbnail">
+                                    <i class="fas fa-chart-bar" style="font-size: 3rem; margin-bottom: 10px;"></i>
+                                    <div class="play-button">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                </div>
                             </div>
-                            <p style="text-align: center; margin-bottom: 10px;">Data Visualization Tools in QI</p>
+                            <p style="text-align: center; margin-bottom: 15px; font-weight: 500;">Data Visualization Tools in QI</p>
                             
                             <div class="video-placeholder" id="watchQIModelsVideo">
-                                <i class="fas fa-play-circle"></i>
+                                <div class="video-thumbnail">
+                                    <i class="fas fa-project-diagram" style="font-size: 3rem; margin-bottom: 10px;"></i>
+                                    <div class="play-button">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                </div>
                             </div>
-                            <p style="text-align: center; margin-bottom: 10px;">QI Models & Frameworks</p>
+                            <p style="text-align: center; margin-bottom: 15px; font-weight: 500;">QI Models & Frameworks</p>
                             
                             <a href="#" class="btn btn-outline">View All Videos</a>
                         </div>
@@ -948,14 +1005,14 @@
             </div>
             <div class="video-player">
                 <video id="dataVizVideo" controls>
-                    <source src="https://github.com/Ludovick-Lopa/ABCs_healthcare_QI/blob/main/Data_Visualization.mp4?raw=true" type="video/mp4">
+                    <source src="https://github.com/Ludovick-Lopa/ABCs_healthcare_QI/raw/main/Data_Visualization.mp4" type="video/mp4">
                     Your browser does not support the video element.
                 </video>
             </div>
             <div class="video-info">
                 <h4>About this video</h4>
                 <p>This educational video explains different visualization tools that are used in QI interventions, helping healthcare professionals effectively track, analyze, and present quality improvement data.</p>
-                <p><strong>Duration:</strong> 12 minutes</p>
+                <p><strong>Duration:</strong> 6:24 minutes</p>
             </div>
         </div>
     </div>
@@ -969,14 +1026,14 @@
                 <p>Useful Models Used in QI Activities</p>
             </div>
             <div class="video-player">
-                <video id="qiModelsVideo" controls>
-                    <source src="#" type="video/mp4">
-                    Your browser does not support the video element.
-                </video>
+                <div style="background: #f5f5f5; padding: 60px 20px; text-align: center; border-radius: 10px;">
+                    <i class="fas fa-video-slash" style="font-size: 3rem; color: #ccc; margin-bottom: 15px;"></i>
+                    <p style="color: #666;">Video content coming soon</p>
+                </div>
             </div>
             <div class="video-info">
                 <h4>About this video</h4>
-                <p>This video explores various models and frameworks used in quality improvement activities, providing insights into how different approaches can be applied to healthcare settings for better outcomes.</p>
+                <p>This video will explore various models and frameworks used in quality improvement activities, providing insights into how different approaches can be applied to healthcare settings for better outcomes.</p>
                 <p><strong>Duration:</strong> Coming Soon</p>
             </div>
         </div>
@@ -1180,6 +1237,9 @@
         watchDataVizVideo.addEventListener('click', () => {
             dataVizVideoModal.style.display = 'flex';
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Try to load the video
+            dataVizVideo.load();
         });
         
         closeDataVizModal.addEventListener('click', () => {
@@ -1192,7 +1252,6 @@
         const qiModelsVideoModal = document.getElementById('qiModelsVideoModal');
         const watchQIModelsVideo = document.getElementById('watchQIModelsVideo');
         const closeQIModelsModal = document.getElementById('closeQIModelsModal');
-        const qiModelsVideo = document.getElementById('qiModelsVideo');
         
         watchQIModelsVideo.addEventListener('click', () => {
             qiModelsVideoModal.style.display = 'flex';
@@ -1202,7 +1261,6 @@
         closeQIModelsModal.addEventListener('click', () => {
             qiModelsVideoModal.style.display = 'none';
             document.body.style.overflow = 'auto'; // Restore scrolling
-            qiModelsVideo.pause(); // Pause video when modal is closed
         });
         
         // Close modals when clicking outside the content
@@ -1225,7 +1283,6 @@
             if (e.target === qiModelsVideoModal) {
                 qiModelsVideoModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
-                qiModelsVideo.pause();
             }
         });
         
@@ -1249,7 +1306,6 @@
             if (e.key === 'Escape' && qiModelsVideoModal.style.display === 'flex') {
                 qiModelsVideoModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
-                qiModelsVideo.pause();
             }
         });
 
@@ -1284,6 +1340,16 @@
                     subscriptionMessage.style.display = 'none';
                 }, 5000);
             }, 1500);
+        });
+
+        // Handle video loading errors
+        dataVizVideo.addEventListener('error', function() {
+            console.error('Error loading video');
+            // You could show a fallback message here
+        });
+
+        dataVizVideo.addEventListener('canplay', function() {
+            console.log('Video can play');
         });
     </script>
 </body>
