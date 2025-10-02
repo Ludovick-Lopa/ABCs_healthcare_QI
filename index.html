@@ -732,6 +732,23 @@
             padding-left: 5px;
         }
 
+        .contact-info {
+            color: #ddd;
+            margin-top: 10px;
+        }
+
+        .contact-info p {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            width: 20px;
+            color: var(--accent);
+        }
+
         .footer-bottom {
             text-align: center;
             padding-top: 30px;
@@ -925,13 +942,13 @@
                             
                             <div class="video-placeholder" id="watchDataVizVideo">
                                 <div class="video-thumbnail">
-                                    <i class="fas fa-chart-bar" style="font-size: 3rem; margin-bottom: 10px;"></i>
+                                    <i class="fas fa-chart-line" style="font-size: 3rem; margin-bottom: 10px;"></i>
                                     <div class="play-button">
                                         <i class="fas fa-play"></i>
                                     </div>
                                 </div>
                             </div>
-                            <p style="text-align: center; margin-bottom: 15px; font-weight: 500;">Data Visualization Tools in QI</p>
+                            <p style="text-align: center; margin-bottom: 15px; font-weight: 500;">From Data to Decisions</p>
                             
                             <div class="video-placeholder" id="watchQIModelsVideo">
                                 <div class="video-thumbnail">
@@ -941,7 +958,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <p style="text-align: center; margin-bottom: 15px; font-weight: 500;">QI Models & Frameworks</p>
+                            <p style="text-align: center; margin-bottom: 15px; font-weight: 500;">Foundations of QI</p>
                             
                             <a href="#" class="btn btn-outline">View All Videos</a>
                         </div>
@@ -968,7 +985,6 @@
             <div class="podcast-info">
                 <h4>About this episode</h4>
                 <p>In this episode, we explore the updated fundamentals of SafeCare Quality Improvement in healthcare settings, discussing key concepts, methodologies, and practical applications for healthcare professionals in Tanzania.</p>
-                <p><strong>Duration:</strong> 15 minutes</p>
             </div>
         </div>
     </div>
@@ -990,51 +1006,48 @@
             <div class="podcast-info">
                 <h4>About this episode</h4>
                 <p>In this episode, we dive deep into the Tanzania Quality Improvement Framework (2011-2016), exploring its structure, implementation strategies, and how it aligns with current healthcare quality standards and practices.</p>
-                <p><strong>Duration:</strong> 18 minutes</p>
             </div>
         </div>
     </div>
 
-    <!-- Video Modal for Data Visualization Tools -->
+    <!-- Video Modal for Data to Decisions -->
     <div class="video-modal" id="dataVizVideoModal">
         <div class="video-modal-content">
             <span class="close-video-modal" id="closeDataVizModal">&times;</span>
             <div class="video-modal-header">
                 <h3>QI Tools & Models Explained</h3>
-                <p>Data Visualization Tools in Quality Improvement Interventions</p>
+                <p>From Data to Decisions: Visualization Tools in QI</p>
             </div>
             <div class="video-player">
                 <video id="dataVizVideo" controls>
-                    <source src="https://github.com/Ludovick-Lopa/ABCs_healthcare_QI/raw/main/Data_Visualization.mp4" type="video/mp4">
+                    <source src="https://github.com/Ludovick-Lopa/ABCs_healthcare_QI/raw/main/Data_to_Decisions.mp4" type="video/mp4">
                     Your browser does not support the video element.
                 </video>
             </div>
             <div class="video-info">
                 <h4>About this video</h4>
-                <p>This educational video explains different visualization tools that are used in QI interventions, helping healthcare professionals effectively track, analyze, and present quality improvement data.</p>
-                <p><strong>Duration:</strong> 6:24 minutes</p>
+                <p>This educational video explains how to transform healthcare data into actionable insights using visualization tools in quality improvement interventions, helping healthcare professionals make data-driven decisions.</p>
             </div>
         </div>
     </div>
 
-    <!-- Video Modal for QI Models -->
+    <!-- Video Modal for Foundations of QI -->
     <div class="video-modal" id="qiModelsVideoModal">
         <div class="video-modal-content">
             <span class="close-video-modal" id="closeQIModelsModal">&times;</span>
             <div class="video-modal-header">
                 <h3>QI Tools & Models Explained</h3>
-                <p>Useful Models Used in QI Activities</p>
+                <p>Foundations of Quality Improvement</p>
             </div>
             <div class="video-player">
-                <div style="background: #f5f5f5; padding: 60px 20px; text-align: center; border-radius: 10px;">
-                    <i class="fas fa-video-slash" style="font-size: 3rem; color: #ccc; margin-bottom: 15px;"></i>
-                    <p style="color: #666;">Video content coming soon</p>
-                </div>
+                <video id="qiModelsVideo" controls>
+                    <source src="https://github.com/Ludovick-Lopa/ABCs_healthcare_QI/raw/main/Foundations_of_QI.mp4" type="video/mp4">
+                    Your browser does not support the video element.
+                </video>
             </div>
             <div class="video-info">
                 <h4>About this video</h4>
-                <p>This video will explore various models and frameworks used in quality improvement activities, providing insights into how different approaches can be applied to healthcare settings for better outcomes.</p>
-                <p><strong>Duration:</strong> Coming Soon</p>
+                <p>This video explores the fundamental models and frameworks used in quality improvement activities, providing insights into how different approaches can be applied to healthcare settings for better outcomes.</p>
             </div>
         </div>
     </div>
@@ -1118,8 +1131,8 @@
                     <ul class="footer-links">
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#resources">Resources</a></li>
-                        <li><a href="#">QI Framework</a></li>
-                        <li><a href="#">SafeCare Standards</a></li>
+                        <li><a href="https://github.com/Ludovick-Lopa/ABCs_healthcare_QI/raw/main/2011%20-%20The%20Tanzania%20quality%20improvement%20framework%20in%20health%20care%2C%202011-2016.pdf" target="_blank">QI Framework</a></li>
+                        <li><a href="https://github.com/Ludovick-Lopa/ABCs_healthcare_QI/raw/main/QA-SCS-018_Facility%20Guide%20SafeCare%20Standards%20v5.0%20for%20Certification.pdf" target="_blank">SafeCare Standards</a></li>
                         <li><a href="#">Events & Webinars</a></li>
                     </ul>
                 </div>
@@ -1132,6 +1145,10 @@
                         <li><a href="#">Glossary of Terms</a></li>
                         <li><a href="#">Contact Administrators</a></li>
                     </ul>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> +255 718 137 408</p>
+                        <p><i class="fas fa-envelope"></i> recolopa1990@gmail.com</p>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -1228,7 +1245,7 @@
             podcastAudio2.pause(); // Pause audio when modal is closed
         });
 
-        // Video modal functionality for Data Visualization Tools
+        // Video modal functionality for Data to Decisions
         const dataVizVideoModal = document.getElementById('dataVizVideoModal');
         const watchDataVizVideo = document.getElementById('watchDataVizVideo');
         const closeDataVizModal = document.getElementById('closeDataVizModal');
@@ -1248,19 +1265,24 @@
             dataVizVideo.pause(); // Pause video when modal is closed
         });
 
-        // Video modal functionality for QI Models
+        // Video modal functionality for Foundations of QI
         const qiModelsVideoModal = document.getElementById('qiModelsVideoModal');
         const watchQIModelsVideo = document.getElementById('watchQIModelsVideo');
         const closeQIModelsModal = document.getElementById('closeQIModelsModal');
+        const qiModelsVideo = document.getElementById('qiModelsVideo');
         
         watchQIModelsVideo.addEventListener('click', () => {
             qiModelsVideoModal.style.display = 'flex';
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Try to load the video
+            qiModelsVideo.load();
         });
         
         closeQIModelsModal.addEventListener('click', () => {
             qiModelsVideoModal.style.display = 'none';
             document.body.style.overflow = 'auto'; // Restore scrolling
+            qiModelsVideo.pause(); // Pause video when modal is closed
         });
         
         // Close modals when clicking outside the content
@@ -1283,6 +1305,7 @@
             if (e.target === qiModelsVideoModal) {
                 qiModelsVideoModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
+                qiModelsVideo.pause();
             }
         });
         
@@ -1306,6 +1329,7 @@
             if (e.key === 'Escape' && qiModelsVideoModal.style.display === 'flex') {
                 qiModelsVideoModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
+                qiModelsVideo.pause();
             }
         });
 
@@ -1350,6 +1374,14 @@
 
         dataVizVideo.addEventListener('canplay', function() {
             console.log('Video can play');
+        });
+
+        qiModelsVideo.addEventListener('error', function() {
+            console.error('Error loading Foundations of QI video');
+        });
+
+        qiModelsVideo.addEventListener('canplay', function() {
+            console.log('Foundations of QI video can play');
         });
     </script>
 </body>
