@@ -662,9 +662,9 @@
         }
 
         .events-container {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
         }
 
         .event-item {
@@ -673,6 +673,8 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            display: flex;
+            flex-direction: column;
         }
 
         .event-item:hover {
@@ -681,7 +683,7 @@
         }
 
         .event-header {
-            padding: 20px;
+            padding: 15px 20px;
             background: var(--gradient);
             color: white;
         }
@@ -689,16 +691,26 @@
         .event-header h3 {
             margin-bottom: 5px;
             color: white;
+            font-size: 1.3rem;
+        }
+
+        .event-header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0;
         }
 
         .event-body {
-            padding: 25px;
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .event-image {
             width: 100%;
             border-radius: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
             cursor: pointer;
@@ -710,8 +722,10 @@
         }
 
         .event-description {
-            margin-bottom: 20px;
-            line-height: 1.6;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-size: 0.95rem;
+            flex-grow: 1;
         }
 
         .event-actions {
@@ -901,6 +915,10 @@
             h2 {
                 font-size: 2rem;
             }
+            
+            .events-container {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -952,6 +970,10 @@
                 border-radius: 30px;
                 padding: 15px;
             }
+            
+            .events-container {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 576px) {
@@ -973,6 +995,10 @@
             
             .video-modal-content {
                 width: 95%;
+            }
+            
+            .events-container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -1031,7 +1057,7 @@
                     <p>Our mission is to simplify complex QI methodologies and make them accessible to practitioners at all levels, from zonal hospitals to dispensaries, targeting both frontline staff and healthcare administrators.</p>
                     <p>By integrating this platform with the Tanzania Quality Improvement Framework (2011-2016) and SafeCare Standards Version 5, we provide a unified approach to improving healthcare quality, safety, and patient outcomes.</p>
                     <p>Whether you're just beginning your QI journey or looking to enhance existing programs, our resources are tailored to support your success.</p>
-                    <a href="#" class="btn" style="margin-top: 20px;">Learn More</a>
+                    <!-- Removed the "Learn More" button -->
                 </div>
                 <div class="about-media">
                     <div class="media-card">
