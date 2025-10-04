@@ -100,11 +100,6 @@
             box-shadow: var(--shadow);
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 86, 163, 0.3);
-        }
-
         .btn-outline {
             background: transparent;
             border: 2px solid var(--primary);
@@ -613,6 +608,53 @@
             color: #666;
         }
 
+        /* Best Practice Showcase Section */
+        .best-practices {
+            background-color: var(--light);
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .practice-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .practice-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 86, 163, 0.2);
+        }
+
+        .practice-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .practice-content {
+            padding: 20px;
+        }
+
+        .practice-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .practice-content p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
         /* Events & Webinars Section */
         .events-webinars {
             background-color: var(--light);
@@ -955,6 +997,7 @@
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#about" class="nav-link">About</a></li>
                     <li><a href="#resources" class="nav-link">Resources</a></li>
+                    <li><a href="#best-practices" class="nav-link">Best Practices</a></li>
                     <li><a href="#events-webinars" class="nav-link">Events & Webinars</a></li>
                     <li><a href="#newsletter" class="nav-link">Subscribe</a></li>
                     <li><a href="https://whatsapp.com/channel/0029VbBCmc2GU3BRrPDXgR0e" target="_blank" rel="noopener" class="btn btn-outline">WhatsApp QI Channel</a></li>
@@ -1157,7 +1200,54 @@
                     </div>
                     <h3>Best Practice Showcase</h3>
                     <p>Explore successful QI implementations and innovative approaches from healthcare facilities worldwide.</p>
-                    <a href="#" class="btn btn-outline">View Showcase</a>
+                    <a href="#best-practices" class="btn btn-outline">View Showcase</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Practice Showcase Section -->
+    <section id="best-practices" class="best-practices">
+        <div class="container">
+            <div class="section-header">
+                <h2>Best Practice Showcase</h2>
+                <p>Explore successful Quality Improvement implementations from healthcare facilities</p>
+            </div>
+            <div class="showcase-grid">
+                <div class="practice-card">
+                    <img src="https://github.com/Ludovick-Lopa/ABCs_healthcare_QI/blob/main/5S.jpg?raw=true" alt="5S Kaizen" class="practice-image">
+                    <div class="practice-content">
+                        <h3>5S Kaizen</h3>
+                        <p>Organized, standardized, and efficient work environment that enhances patient safety, reduces medical errors, and improves staff productivity.</p>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <img src="https://github.com/Ludovick-Lopa/ABCs_healthcare_QI/blob/main/An%20example%20of%20QI%20dashboard.jpg?raw=true" alt="QI Dashboard" class="practice-image">
+                    <div class="practice-content">
+                        <h3>QI Dashboards</h3>
+                        <p>Dashboards provide real-time, visual data that enables healthcare teams to quickly identify trends, monitor performance metrics, and make data-driven decisions for continuous improvement.</p>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <img src="https://github.com/Ludovick-Lopa/ABCs_healthcare_QI/blob/main/Health%20Education.jpg?raw=true" alt="Health Education" class="practice-image">
+                    <div class="practice-content">
+                        <h3>Health Education</h3>
+                        <p>Health education empowers patients with knowledge for self-management, improves treatment adherence, and reduces readmission rates through better understanding of their conditions and care plans.</p>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <img src="https://github.com/Ludovick-Lopa/ABCs_healthcare_QI/blob/main/Clinical%20Simulation%20Perinatal%20rescuscitation.jpg?raw=true" alt="Clinical Simulation" class="practice-image">
+                    <div class="practice-content">
+                        <h3>Clinical Simulation</h3>
+                        <p>Clinical simulation provides a risk-free environment for healthcare teams to test, refine, and perfect processes and protocols before implementing them in real clinical settings, thereby enhancing patient safety and care quality.</p>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <img src="https://github.com/Ludovick-Lopa/ABCs_healthcare_QI/blob/main/Emmergency%20Tray.jpg?raw=true" alt="Emergency Tray" class="practice-image">
+                    <div class="practice-content">
+                        <h3>Emergency Trays</h3>
+                        <p>Emergency trays in maternal and perinatal care are crucial as they provide immediate, organized access to life-saving medications and equipment for managing obstetric emergencies like postpartum hemorrhage and neonatal resuscitation.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1243,6 +1333,7 @@
                     <ul class="footer-links">
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#resources">Resources</a></li>
+                        <li><a href="#best-practices">Best Practices</a></li>
                         <li><a href="#events-webinars">Events & Webinars</a></li>
                         <li><a href="https://github.com/Ludovick-Lopa/ABCs_healthcare_QI/raw/main/2011%20-%20The%20Tanzania%20quality%20improvement%20framework%20in%20health%20care%2C%202011-2016.pdf" target="_blank">QI Framework</a></li>
                         <li><a href="https://github.com/Ludovick-Lopa/ABCs_healthcare_QI/raw/main/QA-SCS-018_Facility%20Guide%20SafeCare%20Standards%20v5.0%20for%20Certification.pdf" target="_blank">SafeCare Standards</a></li>
